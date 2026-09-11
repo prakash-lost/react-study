@@ -1,0 +1,12 @@
+node_modules --- become big file , has all installed node pakages
+public --- static file that doesnt change
+src ---  main folder for our code
+package-lock.json--- last time runed code or version  saved in log
+package.json--- project info 
+
+
+inside src
+in assests --- our img and files
+main.jsx--- main page
+
+
