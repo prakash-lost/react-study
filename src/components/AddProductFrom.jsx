@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
@@ -7,7 +7,7 @@ import toast, { Toaster } from "react-hot-toast";
 import { useNavigate } from "react-router";
 
 // Define the Zod validation schema matching your data structure
- export const ProductSchema = z.object({
+export const ProductSchema = z.object({
   title: z
     .string()
     .min(3, { message: "Title must be at least 3 characters long" })
@@ -26,6 +26,7 @@ import { useNavigate } from "react-router";
 
 export default function AddProductForm({ onClose, listProduct }) {
   const navigate = useNavigate();
+  const [categories, setCategories] = useState([]);
   const {
     register,
     handleSubmit,
@@ -65,9 +66,29 @@ export default function AddProductForm({ onClose, listProduct }) {
     }
     // Optional: clear the form after successful submission
   };
+  useEffect(() => {
+    const loadCategories = async () => {
+      try {
+        const categoryres = await axios.get(
+          "http://localhost:5000/api/v1/categories",
+        );
+        setCategories(categoryres.data.data);
+
+        // toast.success("Categories loaded successfully", {
+        //   icon: "😁",
+        // });
+
+        console.log(categoryres.data);
+      } catch (err) {
+        toast.error("Something went wrong");
+        console.log(err);
+      }
+    };
+    loadCategories();
+  }, []);
 
   return (
-    <div className="min-h-screen  fixed inset-0 bg-black/50 flex items-center justify-center p-6 z-50">
+    <div className=" fixed inset-0 bg-black/50 flex items-center justify-center p-6 z-50">
       <div className="w-full max-w-lg bg-white rounded-2xl shadow-sm border border-slate-200 p-8">
         <div className="mb-6">
           <h2 className="text-2xl font-bold text-slate-800">Add New Product</h2>
@@ -140,10 +161,9 @@ export default function AddProductForm({ onClose, listProduct }) {
                 }`}
               >
                 <option value="">Select category...</option>
-                <option value="electronics">Electronics</option>
-                <option value="clothing">Clothing</option>
-                <option value="books">Books</option>
-                <option value="home">Home & Kitchen</option>
+                {categories.map((value) => (
+                  <option>{value.name}</option>
+                ))}
               </select>
               {errors.category && (
                 <p className="mt-1 text-xs text-rose-500 font-medium">
