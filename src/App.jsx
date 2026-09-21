@@ -1,10 +1,10 @@
 // rafce
 import React from "react";
-import Navbar from "./components/Navbar";
-import Body from "./components/Body";
-import Footer from "./components/footer";
-import CartDesign from "./CartDesign";
-import Daicart from "./daicart";
+// import Navbar from "./components/Navbar";
+// import Body from "./components/Body";
+// import Footer from "./components/footer";
+// import CartDesign from "./CartDesign";
+// // import Daicart from "./daicart";
 import Updatecart from "./Updatecart";
 import Aboutus from "./components/Aboutus";
 import Myskills from "./components/Myskills";
