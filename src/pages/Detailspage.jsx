@@ -1,11 +1,13 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import { FaEdit } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
 import Editproduct from "../components/Editproduct";
+import Deleteproduct from "../components/Deleteproduct";
 
 const Detailspage = () => {
+  // const navigate=useNavigate()
   const { id: productid } = useParams();
   const [num, setNum] = useState(1);
   console.log(productid);
@@ -13,6 +15,7 @@ const Detailspage = () => {
   const [product, setProduct] = useState(null);
 
   const [clicked, setClicked] = useState(false);
+  const [dodelete, setDodelete] = useState(false);
 
   const listProduct = async () => {
     try {
@@ -39,7 +42,7 @@ const Detailspage = () => {
           </button>
 
           <button className="hover:bg-red-600">
-            <MdDelete />
+            <MdDelete onClick={() => setDodelete(true)} />
           </button>
         </div>
 
@@ -88,6 +91,13 @@ const Detailspage = () => {
               product={product}
               listProduct={listProduct}
               onClose={() => setClicked(false)}
+            />
+          )}
+          {dodelete && (
+            <Deleteproduct
+              product={product}
+              setDodelete={setDodelete}
+              onClose={() => setDodelete(false)}
             />
           )}
         </div>

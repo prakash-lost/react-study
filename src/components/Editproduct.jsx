@@ -66,9 +66,9 @@ export default function Editproduct({ product, onClose, listProduct }) {
     <div className="min-h-screen  fixed inset-0 bg-black/50 flex items-center justify-center p-6 z-50 overflow-scroll">
       <div className="w-full max-w-lg bg-white rounded-2xl shadow-sm border border-slate-200 p-8">
         <div className="mb-6">
-          <h2 className="text-2xl font-bold text-slate-800">Add New Product</h2>
+          <h2 className="text-2xl font-bold text-slate-800">Edit Product</h2>
           <p className="text-sm text-slate-500 mt-1">
-            Fill in the details below to add a new item to your inventory.
+            Fill in the details below to edit a new item to your inventory.
           </p>
         </div>
 
