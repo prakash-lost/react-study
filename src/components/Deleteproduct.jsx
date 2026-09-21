@@ -18,7 +18,8 @@ export default function Deleteproduct({ onClose, setDodelete, product }) {
     try {
       await axios.delete(`https://fakestoreapi.com/products/${product.id}`);
       toast.success("yayyyyyy");
-      setDodelete(false);
+      // setDodelete(false);
+      onClose()
     } catch (err) {
       console.log(err);
     }
@@ -36,7 +37,7 @@ export default function Deleteproduct({ onClose, setDodelete, product }) {
         <AlertDialogFooter>
           <AlertDialogCancel onClick={onClose}>Cancel</AlertDialogCancel>
           <AlertDialogAction onClick={() => handleDelete()}>
-            Continue
+            Delete
           </AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>
